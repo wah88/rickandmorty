@@ -1,7 +1,5 @@
-import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import { ActivityIndicator, Button, Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
-import { FlatList } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 

@@ -1,27 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { RickAndMortyCharacter, Character } from '../interfaces/characterInterface';
 import { getAllCharacters, getAllEpisodes, getAllLocations } from '../api/rickAndMortyDB';
+import { Character } from '../interfaces/characterInterface';
 import { Episode } from '../interfaces/episodesInterface';
 import { Location } from '../interfaces/locationInterface';
+
+interface RickAndMortyState {
+    characters: Character[];
+    episodes: Episode[];
+    locations: Location[];
+}
 
 const useCharacters = () => {
 
 
     const [isLoading, setIsLoading] = useState(true);
 
-    const [characters, setCharacters] = useState<Character[]>([]);
-    const [episodes, setEpisodes] = useState<Episode[]>([]);
-    const [locations, setLocations] = useState<Location[]>([])
+    const [rickAndMortyState, setRickAndMortyState] = useState<RickAndMortyState>({
+        characters: [],
+        episodes: [],
+        locations: [],
+    });
 
     const getCharacters = async () => {
-        const respCharacter = await getAllCharacters('/character');
-        const respEpisodes = await getAllEpisodes('/episode');
-        const respLocations = await getAllLocations('/location');
+        const characterPromise = getAllCharacters('/character');
+        const episodesPromise = getAllEpisodes('/episode');
+        const locationsPromise = getAllLocations('/location');
 
-        setCharacters(respCharacter);
-        setEpisodes(respEpisodes);
-        setLocations(respLocations);
+        const response = await Promise.all([characterPromise, episodesPromise, locationsPromise]);
+
+        setRickAndMortyState({
+            characters: response[0],
+            episodes: response[1],
+            locations: response[2]
+        })
 
         setIsLoading(false);
     }
@@ -30,9 +42,7 @@ const useCharacters = () => {
         getCharacters();
     }, [])
     return {
-        characters,
-        episodes,
-        locations,
+        ...rickAndMortyState,
         isLoading
     }
 }
