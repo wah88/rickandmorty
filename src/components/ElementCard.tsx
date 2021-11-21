@@ -1,8 +1,11 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Character } from '../interfaces/characterInterface';
 import { Episode } from '../interfaces/episodesInterface';
 import { Location } from '../interfaces/locationInterface';
+import { isCharacter, isEpisode, isLocation } from '../utils/guards';
 
 
 interface Props {
@@ -11,24 +14,22 @@ interface Props {
     width?: number;
 }
 
-//Init Defined Type Guards
-function isEpisode(element: Character | Episode | Location): element is Episode {
-    return (element as Episode).air_date !== undefined;
-}
-
-function isLocation(element: Character | Episode | Location): element is Location {
-    return (element as Location).dimension !== undefined;
-}
-
-function isCharacter(element: Character | Episode | Location): element is Character {
-    return (element as Character).gender !== undefined;
-}
-//End Defined Type Guards
-
 const ElementCard = ( {element, height = 300, width = 300}: Props ) => {
     const uri = `https://rickandmortyapi.com/api/character/avatar/${element.id}.jpeg`;
+
+    const navigation = useNavigation<any>();
     return (
-        <View style={{width, height, marginHorizontal: 7 }}>
+        <TouchableOpacity 
+            onPress={ () => navigation.navigate('DetailScreen' , element) }
+            activeOpacity={0.8}
+            style={
+                {
+                    width, height, 
+                    marginHorizontal: 2,
+                    paddingBottom: 20,
+                    paddingHorizontal: 6
+                }
+            }>
             <View style={styles.imageContainer}>
                 {
                     
@@ -50,7 +51,7 @@ const ElementCard = ( {element, height = 300, width = 300}: Props ) => {
                 
             </View>
           
-        </View>
+        </TouchableOpacity>
     )
 }
 

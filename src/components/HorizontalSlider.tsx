@@ -12,7 +12,7 @@ interface Props {
 }
 
 const HorizontalSlider = ({ title, element }: Props) => {
-    console.log(element)
+    // console.log(element)
     return (
         <View style={{
             // backgroundColor: 'red', 
