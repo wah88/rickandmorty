@@ -9,10 +9,11 @@ import { Location } from '../interfaces/locationInterface';
 interface Props {
     title?: string;
     element: (Character | Episode | Location)[];
+    detailScreen: string;
 }
 
-const HorizontalSlider = ({ title, element }: Props) => {
-    // console.log(element)
+const HorizontalSlider = ({ title, element, detailScreen }: Props) => {
+    console.log(detailScreen)
     return (
         <View style={{
             // backgroundColor: 'red', 
@@ -26,7 +27,7 @@ const HorizontalSlider = ({ title, element }: Props) => {
             <FlatList 
                 data={element} 
                 renderItem={ ({ item }: any )=> (
-                    <ElementCard element={ item } width={200} height={200}/>
+                    <ElementCard element={ item } width={200} height={200} detailScreen={detailScreen}/>
                 )} 
                 keyExtractor={( item )=> item.id.toString()}  
                 horizontal={true}  

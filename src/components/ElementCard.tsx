@@ -12,15 +12,16 @@ interface Props {
     element: (Character | Episode | Location);
     height?: number;
     width?: number;
+    detailScreen: string;
 }
 
-const ElementCard = ( {element, height = 300, width = 300}: Props ) => {
+const ElementCard = ( {element, height = 300, width = 300, detailScreen}: Props ) => {
     const uri = `https://rickandmortyapi.com/api/character/avatar/${element.id}.jpeg`;
 
     const navigation = useNavigation<any>();
     return (
         <TouchableOpacity 
-            onPress={ () => navigation.navigate('DetailScreen' , element) }
+            onPress={ () => navigation.navigate(detailScreen, element) }
             activeOpacity={0.8}
             style={
                 {

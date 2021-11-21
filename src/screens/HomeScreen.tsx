@@ -28,7 +28,7 @@ const HomeScreen = () => {
                 <View style={styles.carouselContainer}>
                     <Carousel
                         data={characters}
-                        renderItem={ ({ item }: any ) => <ElementCard element={ item }/> }
+                        renderItem={ ({ item }: any ) => <ElementCard element={ item } detailScreen='DetailScreen'/> }
                         sliderWidth={windowWidth}
                         itemWidth={300}
                         inactiveSlideOpacity={0.9}
@@ -36,9 +36,9 @@ const HomeScreen = () => {
                 </View>
 
                 {/* Capitulos */}
-                <HorizontalSlider title="Episodios" element={episodes}/>
+                <HorizontalSlider title="Episodios" element={episodes} detailScreen='EpisodeDetailScreen'/>
                 {/* Ubicaciones */}    
-                <HorizontalSlider title="Ubicaciones" element={locations}/>
+                <HorizontalSlider title="Ubicaciones" element={locations} detailScreen='LocationDetailScreen'/>
 
                 
                 

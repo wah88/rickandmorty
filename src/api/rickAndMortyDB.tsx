@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { API_HOST } from "../utils/constants";
 import { RickAndMortyCharacter } from "../interfaces/characterInterface";
-import { RickAndMortyEpisodes } from "../interfaces/episodesInterface";
+import { RickAndMortyEpisodes, Episode } from '../interfaces/episodesInterface';
 import { RickAndMortyLocation } from '../interfaces/locationInterface';
 
 const rickAndMortyDB = axios.create({
@@ -32,6 +32,15 @@ export const getAllLocations = async (path: string) => {
     try {
         const resp = await rickAndMortyDB.get<RickAndMortyLocation>(path);
         return resp.data.results; 
+    } catch (error) {
+        throw error;
+    }    
+}
+
+export const getEpisodeDetails = async (path: string) => {
+    try {
+        const resp = await rickAndMortyDB.get<Episode>(path);
+        return resp.data; 
     } catch (error) {
         throw error;
     }    

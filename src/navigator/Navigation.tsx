@@ -5,10 +5,14 @@ import DetailScreen from '../screens/DetailScreen';
 import { Character } from '../interfaces/characterInterface';
 import { Episode } from '../interfaces/episodesInterface';
 import { Location } from '../interfaces/locationInterface';
+import EpisodeDetailScreen from '../screens/EpisodeDetailScreen';
+import LocationDetailScreen from '../screens/LocationDetailScreen';
 
 export type RootStackParams = {
   HomeScreen: undefined;
-  DetailScreen: (Character | Episode | Location);
+  DetailScreen: Character;
+  EpisodeDetailScreen: Episode;
+  LocationDetailScreen: Location;
 }
 
 const Stack = createStackNavigator();
@@ -25,6 +29,8 @@ export const Navigation = () => {
     >
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="DetailScreen" component={DetailScreen} />
+      <Stack.Screen name="EpisodeDetailScreen" component={EpisodeDetailScreen} />
+      <Stack.Screen name="LocationDetailScreen" component={LocationDetailScreen} />
     </Stack.Navigator>
   );
 }
