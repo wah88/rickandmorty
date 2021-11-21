@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { getEpisodeDetails } from '../api/rickAndMortyDB';
+import { Character } from '../interfaces/characterInterface';
 import { Episode } from '../interfaces/episodesInterface';
 
 interface EpisodeDetails{
     isLoading: boolean;
     episode?: Episode[];
+    character?: Character[];
 }
 
 export const useEpisodeDetails = (episodes: string[]) => {

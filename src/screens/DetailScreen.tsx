@@ -7,6 +7,7 @@ import { RootStackParams } from '../navigator/Navigation';
 import { Character } from '../interfaces/characterInterface';
 import { useEpisodeDetails } from '../hooks/useEpisodeDetails';
 import EpisodeDetails from '../components/EpisodeDetails';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
@@ -26,10 +27,10 @@ const DetailScreen = ({route}: Props) => {
     
     
     return (
-        <ScrollView>            
+        <SafeAreaView>            
             {/* <Text>Detail Screen</Text>         */}
-            <View>                                      
-                    <>
+            <ScrollView>                                      
+                    
                         <View style={styles.imageContainer}>
                             <View style={styles.imageBorder}>
                                 <Image source={{uri}} style={styles.image} /> 
@@ -39,10 +40,11 @@ const DetailScreen = ({route}: Props) => {
                         <View style={styles.infoContainer}>
                             <Text style={styles.infoTitle}>Nombre: {element.name}</Text>
                             <Text style={styles.infoTitle}>Estado: {element.status}</Text>
-                        
+                            <Text style={styles.infoTitle}>Genero: {element.gender}</Text>
+                            <Text style={styles.infoTitle}>Especie: {element.species}</Text>
                         </View>
                         <View style={styles.infoContainer}>
-                            <Icon name="rocket" color="grey" size={50}/>
+                            {/* <Icon name="rocket" color="grey" size={50}/> */}
                             {
                                 isLoading 
                                 ? <ActivityIndicator color="grey" size={25} style={{marginTop: 20}}/>
@@ -51,12 +53,11 @@ const DetailScreen = ({route}: Props) => {
                             
                         </View>
                         
-                    </>
                     
                     <View></View>
                 
-            </View>  
-        </ScrollView>
+            </ScrollView>  
+        </SafeAreaView>
         
     )
 }
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     },
     infoContainer:{
         marginVertical: 20,
-        marginLeft: 15
+        marginLeft: 15,
     },
     infoTitle:{
         fontSize: 20,
