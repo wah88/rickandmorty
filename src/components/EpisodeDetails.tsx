@@ -1,44 +1,25 @@
 import React from 'react'
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, Text, View, ScrollView, FlatList, Dimensions } from 'react-native';
 import { Episode } from '../interfaces/episodesInterface';
 
+const windowWidth = Dimensions.get('window').width;
 
 interface Props {
-    episodeInfo: Episode[]
+    episodeInfo: Episode
 }
 const EpisodeDetails = ({episodeInfo}: Props) => {
+    // console.log(episodeInfo)
     return (
-            <>
-                <Text style={styles.textTitle}>Participación en los episodios:</Text>
-                {/* <FlatList 
-                    // style={styles.episodeContainer}
-                    data = {episodeInfo}
-                    keyExtractor = {(episode) => episode.id.toString()}
-                    renderItem={ ({item}) => <Text>{item.name}</Text> }
-                    numColumns={3}
-                    >
-                </FlatList> */}
-                <ScrollView 
-                    style={styles.listContainer}
-                    horizontal={false}
-                    showsHorizontalScrollIndicator={false}
-                    >
-                    {
-                        episodeInfo.map(episode => (
-                            <View key={episode.id} style={styles.episodeContainer}>
-                                <Text                                
-                                style={styles.episodeTitle}
-                            >
-                                {episode.name}
-                                </Text>
-                            </View>
-                            
-                        ))
-                    } 
-                </ScrollView>
-                
-            </>
+        <View style={styles.mainContainer}>
+            <View style={styles.episodeContainer}>
+                <Text                                
+                style={styles.episodeTitle}
+                >
+                    {episodeInfo.name}
+                </Text>
+        </View>
+        </View>
+        
         
     )
 }
@@ -47,14 +28,13 @@ export default EpisodeDetails
 
 const styles = StyleSheet.create({
     episodeTitle:{
-        fontSize: 25,
-        marginRight: 10,
+        fontSize: 15,
         textAlign: 'center',
     },
     episodeContainer:{
         flex: 1,
         borderRadius: 10,
-        height: 80 ,
+        height: 40,
         borderWidth: 2,
         borderColor: 'grey',
         alignItems: 'center',
@@ -69,12 +49,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.36,
         shadowRadius: 6.68,
 
-        elevation: 11,
+        elevation: 5,
 
     },
-    listContainer:{
-        flex: 1,
-        width: '90%'
+    mainContainer:{
+        marginHorizontal: 20
     },
     textTitle:{
         fontSize: 25,
