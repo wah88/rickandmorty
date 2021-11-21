@@ -7,8 +7,6 @@ import CharacterCard from '../components/CharacterCard';
 import { useEpisodeCharacters } from '../hooks/useEpisodeCharacters';
 
 
-const heightDimension = Dimensions.get('screen').height;
-
 interface Props extends StackScreenProps<RootStackParams, 'EpisodeDetailScreen'>{};
 interface Props {
     element: Episode;

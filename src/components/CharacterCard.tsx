@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import { Character } from '../interfaces/characterInterface';
 
@@ -13,13 +13,13 @@ interface Props {
 const CharacterCard = ({character}: Props) => {
     const uri = character.image;
     return (
-        <TouchableOpacity>
+        <TouchableWithoutFeedback>
 
             <View style={{...styles.cardContainer, width: windowWidth * 0.4}}>
                 <Image source={{uri}} style={styles.image} /> 
             </View>
             
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
     )
 }
 
