@@ -24,8 +24,8 @@ export const Navigation = () => {
           headerMode: 'screen',
           headerTitle: '',
           headerBackTitle: 'Atrás',
-          headerTintColor: 'white',
-          headerStyle: { backgroundColor: 'tomato' },
+          headerTintColor: '#48484a',
+          headerStyle: { backgroundColor: 'transparent', borderBottomWidth: 0 },
             cardStyle:{
                 backgroundColor: 'white'
             }

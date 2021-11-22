@@ -1,13 +1,12 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Dimensions, Image, ScrollView, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
-import  Icon from 'react-native-vector-icons/Ionicons';
 import { RootStackParams } from '../navigator/Navigation';
 
 import { Character } from '../interfaces/characterInterface';
 import { useEpisodeDetails } from '../hooks/useEpisodeDetails';
 import EpisodeDetails from '../components/EpisodeDetails';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 
 

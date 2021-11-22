@@ -7,7 +7,6 @@ import Carousel from 'react-native-snap-carousel';
 import HorizontalSlider from '../components/HorizontalSlider';
 import useCharacters from '../hooks/useCharacters';
 import ElementCard from '../components/ElementCard';
-import useItemPaginated from '../hooks/useItemPaginated';
 
 const {width: windowWidth } = Dimensions.get('window');
 
@@ -36,6 +35,7 @@ const HomeScreen = () => {
                         itemWidth={300}
                         inactiveSlideOpacity={0.9}
                         onEndReached={getCharacters}
+                        // onEndReachedThreshold={0.1}
                     />
                 </View>
 

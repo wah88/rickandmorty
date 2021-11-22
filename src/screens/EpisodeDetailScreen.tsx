@@ -6,7 +6,7 @@ import { Episode } from '../interfaces/episodesInterface';
 import CharacterCard from '../components/CharacterCard';
 import { useEpisodeCharacters } from '../hooks/useEpisodeCharacters';
 
-
+const windowWidth = Dimensions.get('window').width;
 interface Props extends StackScreenProps<RootStackParams, 'EpisodeDetailScreen'>{};
 interface Props {
     element: Episode;
@@ -64,10 +64,12 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
         marginRight: 5,
+        width: windowWidth * 0.5
     },
     descTitle:{
         fontSize: 25,
         marginRight: 5,
+        width: windowWidth * 0.4
     },
     flatList:{
         alignItems: 'center',

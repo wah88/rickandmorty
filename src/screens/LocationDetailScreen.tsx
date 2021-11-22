@@ -1,10 +1,12 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import CharacterCard from '../components/CharacterCard';
 import { useEpisodeCharacters } from '../hooks/useEpisodeCharacters';
 import { Location } from '../interfaces/locationInterface';
 import { RootStackParams } from '../navigator/Navigation';
+
+const windowWidth = Dimensions.get('window').width;
 
 interface Props extends StackScreenProps<RootStackParams, 'LocationDetailScreen'>{};
 interface Props {
@@ -63,10 +65,12 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
         marginRight: 5,
+        width: windowWidth * 0.5
     },
     descTitle:{
         fontSize: 25,
         marginRight: 5,
+        width: windowWidth * 0.4
     },
     flatList:{
         alignItems: 'center',
