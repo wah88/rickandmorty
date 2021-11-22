@@ -35,7 +35,15 @@ const ElementCard = ( {element, height = 300, width = 300, detailScreen}: Props 
                 {
                     
                     isCharacter(element) ? 
-                    <Image source={{uri}} style={styles.image} /> 
+                    <>
+                        <View style={{flex: 1}}>
+                            <Image source={{uri}} style={styles.image} /> 
+                        </View>
+                        <View style={styles.cardTitleContainer}>
+                            <Text style={styles.cardTitle}>{element.name}</Text>
+                        </View>
+                        
+                    </>
                     : isEpisode(element) ?
                     <View style={styles.episodeContainer}>
                         <Text style={styles.textTitle}>{element.name}</Text>
@@ -59,6 +67,21 @@ const ElementCard = ( {element, height = 300, width = 300, detailScreen}: Props 
 export default ElementCard
 
 const styles = StyleSheet.create({
+    cardTitle:{
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        marginVertical: 5,
+    },
+    cardTitleContainer:{
+        position: 'absolute',
+        backgroundColor: '#37c759',
+        borderTopStartRadius: 15,
+        borderTopEndRadius: 15,
+        width: '100%',
+        height: 35
+    },
     episodeContainer:{
         flex: 1,
         alignItems: 'center',
@@ -114,6 +137,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
 
-        elevation: 10,
+        elevation: 8,
     },
 })
