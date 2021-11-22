@@ -1,6 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, ScrollView, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import { RootStackParams } from '../navigator/Navigation';
 
 import { Character } from '../interfaces/characterInterface';

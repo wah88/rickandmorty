@@ -35,7 +35,7 @@ const HomeScreen = () => {
                         itemWidth={300}
                         inactiveSlideOpacity={0.9}
                         onEndReached={getCharacters}
-                        // onEndReachedThreshold={0.1}
+                        onEndReachedThreshold={0.5}
                     />
                 </View>
 

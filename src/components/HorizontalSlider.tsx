@@ -32,7 +32,8 @@ const HorizontalSlider = ({ title, element, detailScreen, refreshItems }: Props)
                 keyExtractor={( item )=> item.id.toString()}  
                 horizontal={true}  
                 showsHorizontalScrollIndicator={false}  
-                onEndReached={refreshItems}             
+                onEndReached={refreshItems}   
+                onEndReachedThreshold={0.5}          
             />
         </View>
     )
