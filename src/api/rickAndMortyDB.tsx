@@ -11,8 +11,9 @@ const rickAndMortyDB = axios.create({
 
 export const getAllCharacters = async (path: string) => {
     try {
+        console.log('path Character:: ', path)
         const resp = await rickAndMortyDB.get<RickAndMortyCharacter>(path);
-        return resp.data.results; 
+        return resp.data; 
     } catch (error) {
         throw error;
     }    
@@ -21,17 +22,20 @@ export const getAllCharacters = async (path: string) => {
 
 export const getAllEpisodes = async (path: string) => {
     try {
+        console.log('pathEpisodes:: ', path)
         const resp = await rickAndMortyDB.get<RickAndMortyEpisodes>(path);
-        return resp.data.results; 
+        return resp.data; 
     } catch (error) {
+        console.log('error:: ', error);
         throw error;
     }    
 }
 
 export const getAllLocations = async (path: string) => {
     try {
+        console.log('pathLocations:: ', path)
         const resp = await rickAndMortyDB.get<RickAndMortyLocation>(path);
-        return resp.data.results; 
+        return resp.data; 
     } catch (error) {
         throw error;
     }    

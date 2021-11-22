@@ -7,12 +7,14 @@ import Carousel from 'react-native-snap-carousel';
 import HorizontalSlider from '../components/HorizontalSlider';
 import useCharacters from '../hooks/useCharacters';
 import ElementCard from '../components/ElementCard';
+import useItemPaginated from '../hooks/useItemPaginated';
 
 const {width: windowWidth } = Dimensions.get('window');
 
 const HomeScreen = () => {
-    const  { characters, episodes, locations, isLoading } = useCharacters();
+    const  { characters, episodes, locations, isLoading, getInfo, getCharacters, getEpisodes, getLocations } = useCharacters();
     const {top} = useSafeAreaInsets();
+    // const { characterList, loadCharacterItems } = useItemPaginated();
     
     if (isLoading){        
         return(
@@ -27,18 +29,19 @@ const HomeScreen = () => {
                 {/* Carousel de personajes principal */}
                 <View style={styles.carouselContainer}>
                     <Carousel
-                        data={characters}
+                        data={characters!}
                         renderItem={ ({ item }: any ) => <ElementCard element={ item } detailScreen='DetailScreen'/> }
                         sliderWidth={windowWidth}
                         itemWidth={300}
                         inactiveSlideOpacity={0.9}
+                        onEndReached={getCharacters}
                     />
                 </View>
 
                 {/* Capitulos */}
-                <HorizontalSlider title="Episodios" element={episodes} detailScreen='EpisodeDetailScreen'/>
+                <HorizontalSlider title="Episodios" element={episodes!} detailScreen='EpisodeDetailScreen' refreshItems={getEpisodes}/>
                 {/* Ubicaciones */}    
-                <HorizontalSlider title="Ubicaciones" element={locations} detailScreen='LocationDetailScreen'/>
+                <HorizontalSlider title="Ubicaciones" element={locations!} detailScreen='LocationDetailScreen' refreshItems={getLocations}/>
 
                 
                 

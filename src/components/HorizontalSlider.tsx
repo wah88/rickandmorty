@@ -10,9 +10,10 @@ interface Props {
     title?: string;
     element: (Character | Episode | Location)[];
     detailScreen: string;
+    refreshItems: any;
 }
 
-const HorizontalSlider = ({ title, element, detailScreen }: Props) => {
+const HorizontalSlider = ({ title, element, detailScreen, refreshItems }: Props) => {
     console.log(detailScreen)
     return (
         <View style={{
@@ -31,7 +32,8 @@ const HorizontalSlider = ({ title, element, detailScreen }: Props) => {
                 )} 
                 keyExtractor={( item )=> item.id.toString()}  
                 horizontal={true}  
-                showsHorizontalScrollIndicator={false}               
+                showsHorizontalScrollIndicator={false}  
+                onEndReached={refreshItems}             
             />
         </View>
     )
