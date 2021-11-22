@@ -21,7 +21,11 @@ export const Navigation = () => {
   return (
     <Stack.Navigator
         screenOptions={{
-            headerShown: false,
+          headerMode: 'screen',
+          headerTitle: '',
+          headerBackTitle: 'Atrás',
+          headerTintColor: 'white',
+          headerStyle: { backgroundColor: 'tomato' },
             cardStyle:{
                 backgroundColor: 'white'
             }

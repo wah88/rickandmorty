@@ -1,14 +1,13 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, ScrollView, ActivityIndicator, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, ScrollView, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import  Icon from 'react-native-vector-icons/Ionicons';
 import { RootStackParams } from '../navigator/Navigation';
 
-import { Character, EpisodeDetail } from '../interfaces/characterInterface';
+import { Character } from '../interfaces/characterInterface';
 import { useEpisodeDetails } from '../hooks/useEpisodeDetails';
 import EpisodeDetails from '../components/EpisodeDetails';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Episode } from '../interfaces/episodesInterface';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 
 
@@ -20,47 +19,48 @@ interface Props {
     element: Character;
 }
 
-const DetailScreen = ({route}: Props) => {
+const DetailScreen = ({navigation, route}: Props) => {
+    const {top} =  useSafeAreaInsets();
     const element = route.params;
     const uri = `https://rickandmortyapi.com/api/character/avatar/${element.id}.jpeg`;
+
     
     const { isLoading, episode } = useEpisodeDetails( element.episode );
     
     
-    return (
-        <SafeAreaView style={{flex:1}}>            
-            <View style={{flex: 1}}>
-                        <View style={styles.imageContainer}>
-                            <View style={styles.imageBorder}>
-                                <Image source={{uri}} style={styles.image} /> 
-                            </View>                            
-                        </View>                        
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.infoTitle}>Nombre: {element.name}</Text>
-                            <Text style={styles.infoTitle}>Estado: {element.status}</Text>
-                            <Text style={styles.infoTitle}>Genero: {element.gender}</Text>
-                            <Text style={styles.infoTitle}>Especie: {element.species}</Text>
-                        </View>
+    return (         
+        <View style={{flex: 1}}>
+            <View style={styles.headerContainer}>     
+                <View style={styles.imageContainer}>
+                    <View style={styles.imageBorder}>
+                        <Image source={{uri}} style={styles.image} /> 
+                    </View>                            
+                </View>                        
+                <View style={styles.infoContainer}>
+                    <Text style={styles.infoTitle}>Nombre: {element.name}</Text>
+                    <Text style={styles.infoTitle}>Estado: {element.status}</Text>
+                    <Text style={styles.infoTitle}>Genero: {element.gender}</Text>
+                    <Text style={styles.infoTitle}>Especie: {element.species}</Text>
+                </View>
 
-                        <View style={styles.flatList}>
-                            <Text style={styles.textTitle}>Participación en los episodios:</Text>
-                            {
-                                isLoading 
-                                ? <ActivityIndicator color="grey" size={25} style={{marginTop: 20}}/>
-                                : <FlatList
-                                    data={episode}
-                                    keyExtractor={(ep) => ep.id.toString()}
-                                    showsVerticalScrollIndicator={false}
-                                    renderItem={({item}) => (
-                                        <EpisodeDetails episodeInfo={item}/>
-                                    )}
-                                />
-                            }
-                        </View>
-            </View>                             
-                    
-                        
-        </SafeAreaView>
+                <View style={styles.flatList}>
+                    <Text style={styles.textTitle}>Participación en los episodios:</Text>
+                    {
+                        isLoading 
+                        ? <ActivityIndicator color="grey" size={25} style={{marginTop: 20}}/>
+                        : <FlatList
+                            data={episode}
+                            keyExtractor={(ep) => ep.id.toString()}
+                            showsVerticalScrollIndicator={false}
+                            renderItem={({item}) => (
+                                <EpisodeDetails episodeInfo={item}/>
+                            )}
+                        />
+                    }
+                </View>
+            </View>
+            
+        </View>  
         
     )
 }
@@ -68,10 +68,19 @@ const DetailScreen = ({route}: Props) => {
 export default DetailScreen
 
 const styles = StyleSheet.create({
+    buttonBack:{
+        left: 20,
+        position: 'absolute',
+        zIndex: 1000
+    },
+    headerContainer: {
+        flex: 1,
+        zIndex: 999
+    },
     image:{
         flex: 1,
         borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50
+        borderBottomRightRadius: 50,
     },
     imageBorder:{
         flex: 1,

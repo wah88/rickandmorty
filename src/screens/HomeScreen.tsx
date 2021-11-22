@@ -27,6 +27,7 @@ const HomeScreen = () => {
         <ScrollView>
             <View style={{marginTop: top + 15}}>
                 {/* Carousel de personajes principal */}
+                <Text style={{fontSize:25, fontWeight: 'bold', marginLeft: 5, marginVertical: 10}}>Personajes</Text>
                 <View style={styles.carouselContainer}>
                     <Carousel
                         data={characters!}

@@ -14,7 +14,6 @@ interface Props {
 }
 
 const HorizontalSlider = ({ title, element, detailScreen, refreshItems }: Props) => {
-    console.log(detailScreen)
     return (
         <View style={{
             // backgroundColor: 'red', 
