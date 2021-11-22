@@ -17,7 +17,7 @@ const EpisodeDetails = ({episodeInfo}: Props) => {
                 >
                     {episodeInfo.name}
                 </Text>
-        </View>
+            </View>
         </View>
         
         

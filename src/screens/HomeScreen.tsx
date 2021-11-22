@@ -11,9 +11,8 @@ import ElementCard from '../components/ElementCard';
 const {width: windowWidth } = Dimensions.get('window');
 
 const HomeScreen = () => {
-    const  { characters, episodes, locations, isLoading, getInfo, getCharacters, getEpisodes, getLocations } = useCharacters();
+    const  { characters, episodes, locations, isLoading, getCharacters, getEpisodes, getLocations } = useCharacters();
     const {top} = useSafeAreaInsets();
-    // const { characterList, loadCharacterItems } = useItemPaginated();
     
     if (isLoading){        
         return(
