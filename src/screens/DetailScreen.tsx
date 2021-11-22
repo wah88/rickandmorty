@@ -7,6 +7,7 @@ import { Character } from '../interfaces/characterInterface';
 import { useEpisodeDetails } from '../hooks/useEpisodeDetails';
 import EpisodeDetails from '../components/EpisodeDetails';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import InfoTextCard from '../components/InfoTextCard';
 
 
 
@@ -34,13 +35,15 @@ const DetailScreen = ({navigation, route}: Props) => {
                     <View style={styles.imageBorder}>
                         <Image source={{uri}} style={styles.image} /> 
                     </View>                            
-                </View>                        
-                <View style={styles.infoContainer}>
-                    <Text style={styles.infoTitle}>Nombre: {element.name}</Text>
-                    <Text style={styles.infoTitle}>Estado: {element.status}</Text>
-                    <Text style={styles.infoTitle}>Genero: {element.gender}</Text>
-                    <Text style={styles.infoTitle}>Especie: {element.species}</Text>
-                </View>
+                </View>     
+                <View style={{marginVertical: 10}}>
+                    <InfoTextCard title='Nombre:' description={element.name}/>
+                    <InfoTextCard title='Estado:' description={element.status}/>
+                    <InfoTextCard title='Género:' description={element.gender}/>
+                    <InfoTextCard title='Especie:' description={element.species}/>
+                    <InfoTextCard title='Ubicación:' description={element.location.name}/>
+                    <InfoTextCard title='Planeta:' description={element.origin.name}/>
+                </View>                
 
                 <View style={styles.flatList}>
                     <Text style={styles.textTitle}>Participación en los episodios:</Text>
@@ -76,6 +79,11 @@ const styles = StyleSheet.create({
         flex: 1,
         zIndex: 999
     },
+    descTitle:{
+        fontSize: 15,
+        width: width * 0.4,
+        marginLeft: 5
+    },
     image:{
         flex: 1,
         borderBottomLeftRadius: 50,
@@ -103,15 +111,14 @@ const styles = StyleSheet.create({
         borderBottomStartRadius: 50,
     },
     infoContainer:{
-        marginVertical: 20,
-        marginLeft: 15,
+        flexDirection: 'row',
     },
     infoTitle:{
         fontSize: 20,
         fontWeight: 'bold'
     },
     textTitle:{
-        fontSize: 25,
+        fontSize: 15,
         fontWeight: 'bold',
         marginLeft: 15
     },
